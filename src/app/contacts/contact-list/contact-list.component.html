@@ -11,14 +11,7 @@
   </div>
     <div class="panel-body">
       <div class="col-md-12">
-        <a href="#" class="list-group-item clearfix" *ngFor='let contact of contacts'>
-          <div class="col-md-8">
-            <h4 class="list-group-item-heading">{{ contact.name }}</h4>
-            </div>
-            <div class="col-md-4">
-              <img [src]="contact.imgUrl" alt="{{ contact.name }}" class="img-responsive pull-right pad-left-right" style="max-height: 50px">
-          </div>
-        </a>
+        <app-contact-item *ngFor="let contactEl of contacts" [contact]="contactEl" (click)="onContactSelected(contactEl)"></app-contact-item>
       </div>
     </div>
   </div>
