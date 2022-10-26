@@ -18,15 +18,12 @@ export class MessageService {
     }
     
     getMessage(id: string): Message {
-        this.messages.forEach((message) => {
+        for (const message of this.messages) {
             if (message.id === id) {
                 return message;
             }
-            else {
-                return null;
-            }
-        })
-        return 
+        }
+        return null;
        } 
     
     addMessage(message: Message) {

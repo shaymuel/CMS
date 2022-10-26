@@ -2,28 +2,42 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Document } from "./document.model";
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DocumentService {
-    private documents: Document[] = [];
-    documentSelectedEvent = new EventEmitter<Document>();
+    documents: Document[];
+    documentChangedEvent = new EventEmitter<Document[]>();
 
-    constructor() {    
+    constructor() {
         this.documents = MOCKDOCUMENTS;
     }
 
-    getDocuments() {
+    getDocuments(): Document[] {
         return this.documents.slice();
     }
-    
+
     getDocument(id: string): Document {
-        this.documents.forEach((document) => {
+        for (const document of this.documents) {
             if (document.id === id) {
                 return document;
             }
-            else {
-                return null;
-            }
-        })
-        return 
-       } 
+        }
+        return null;
+    }
+
+    deleteDocument(document: Document) {
+        if (!document) {
+            return;
+        }
+        const pos = this.documents.indexOf(document);
+        if (pos < 0) {
+            return;
+        }
+        this.documents.splice(pos, 1);
+        this.documentChangedEvent.emit(this.documents.slice());
+    }
+
+
+
 }

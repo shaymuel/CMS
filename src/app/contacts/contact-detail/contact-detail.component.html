@@ -9,8 +9,8 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="pull-right clearfix">
-          <button type="button" style='margin-right: 5px;' class="btn btn-primary">Edit</button>
-          <button type="button" class="btn btn-danger">Delete</button>
+          <a style='margin-right: 5px;' class="btn btn-primary" routerLink="edit">Edit</a>
+          <a class="btn btn-danger" (click)="onDelete()">Delete</a>
         </div>
       </div>
     </div>
